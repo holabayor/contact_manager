@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 const DATABASE = process.env.DB || 'contact_manager';
 const url = process.env.MONGODB_URL;
 
-console.log(url);
+// console.log(url);
 
 const dbClient = () => {
   mongoose.connect(url).then(() => {
@@ -13,4 +13,4 @@ const dbClient = () => {
   });
 };
 
-dbClient();
+export default dbClient;
