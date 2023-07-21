@@ -16,7 +16,7 @@ app.use(cors());
 
 app.disable('x-powered-by');
 
-app.use('/', router);
+app.use('/api/', router);
 
 app.get('/', (req, res) => {
   res.json('Contact Manager');
