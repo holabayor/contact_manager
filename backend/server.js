@@ -3,6 +3,7 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import dbClient from './utils/db.js';
+import router from './routes/index.js';
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -14,6 +15,8 @@ app.use(express.json());
 app.use(cors());
 
 app.disable('x-powered-by');
+
+app.use('/', router);
 
 app.get('/', (req, res) => {
   res.json('Contact Manager');
