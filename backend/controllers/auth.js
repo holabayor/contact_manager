@@ -14,6 +14,8 @@ class AuthController {
       // Create a new user
       const newUser = User({ firstName, lastName, email, password });
       await newUser.save();
+
+      res.status(201).json({ message: 'User created successfully' });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: error.message });
