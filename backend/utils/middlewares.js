@@ -15,8 +15,8 @@ const isLoggedIn = async (req, res, next) => {
 };
 
 const refreshAccessToken = (req, res, next) => {
-  const refreshToken = req.cookies['refreshToken'];
-  console.log('refreshToken', refreshToken);
+  const cookies = req.headers.cookie;
+  const refreshToken = cookies.split('=')[1];
 
   if (refreshToken === null) return res.sendStatus(401);
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
@@ -29,14 +29,7 @@ const refreshAccessToken = (req, res, next) => {
         expiresIn: 1200,
       }
     );
-    const newRefreshToken = jwt.sign(
-      { id: user._id },
-      process.env.REFRESH_TOKEN_SECRET,
-      {
-        expiresIn: '7d',
-      }
-    );
-    res.cookie('refreshToken', newRefreshToken, { httpOnly: true });
+    req.id = user.id;
     res.setHeader('Authorization', `Bearer ${accessToken}`);
     next();
   });

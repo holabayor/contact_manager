@@ -1,7 +1,7 @@
 import express from 'express';
 import AuthController from '../controllers/auth.js';
 import ContactController from '../controllers/contacts.js';
-import { isLoggedIn } from '../utils/middlewares.js';
+import { isLoggedIn, refreshAccessToken } from '../utils/middlewares.js';
 
 const router = express.Router();
 
@@ -11,6 +11,8 @@ router.get('/', (req, res) => {
 
 router.post('/signup', AuthController.signup);
 router.post('/login', AuthController.login);
+
+router.get('/refresh', isLoggedIn, refreshAccessToken, AuthController.getUser);
 
 router.get('/contacts', ContactController.myContacts);
 router.get('/contacts/:id', isLoggedIn, ContactController.getContact);

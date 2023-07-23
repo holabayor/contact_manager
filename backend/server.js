@@ -2,11 +2,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import dbClient from './utils/db.js';
 import router from './routes/index.js';
 
 const app = express();
 const port = process.env.PORT || 8000;
+
+app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

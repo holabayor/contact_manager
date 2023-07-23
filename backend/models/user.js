@@ -54,6 +54,13 @@ userSchema.pre('save', async function (next) {
   }
 });
 
+// Remove sensitive fields from the user object
+userSchema.methods.toJSON = function () {
+  const userObject = this.toObject();
+  delete userObject.password;
+  return userObject;
+};
+
 // Create the User model based on the user schema
 const User = mongoose.model('User', userSchema);
 

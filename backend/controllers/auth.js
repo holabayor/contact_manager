@@ -53,11 +53,14 @@ class AuthController {
                 expiresIn: '7d',
               }
             );
-            res.cookie('refreshToken', refreshToken, { httpOnly: true });
+
+            res.cookie('refreshToken', refreshToken, {
+              httpOnly: true,
+              sameSite: 'lax',
+              secure: true,
+            });
             res.setHeader('Authorization', `Bearer ${accessToken}`);
             res.status(200).send({
-              accessToken,
-              refreshToken,
               user,
             });
           } else {
@@ -68,6 +71,21 @@ class AuthController {
     } catch (error) {
       console.log(error);
       res.sendStatus(403);
+    }
+  }
+
+  static async getUser(req, res) {
+    try {
+      const user = await User.findById(req.id);
+
+      if (!user) {
+        return res.status(403).json({ error: 'No user found' });
+      }
+      return res.status(200).send({
+        user,
+      });
+    } catch (error) {
+      return new Error(error);
     }
   }
 }
