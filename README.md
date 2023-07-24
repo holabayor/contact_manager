@@ -23,7 +23,7 @@ Before running the application, make sure you have the following installed:
    cd contact-manager/backend
    npm install
 
-   cd.. 
+   cd .. 
 
    cd contact-manager/frontend
    npm install
