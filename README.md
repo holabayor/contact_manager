@@ -29,7 +29,7 @@ Before running the application, make sure you have the following installed:
    Create a `.env` file in the root directory of the project and add the following:
 
    ```
-   MONGODB_URL=your-mongodb-connection-url
+	MONGODB_URL=your-mongodb-connection-url
 	ACCESS_TOKEN="access token string"
 	REFRESH_TOKEN="refresh token here"
    ```
