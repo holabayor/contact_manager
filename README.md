@@ -63,6 +63,7 @@ Before running the application, make sure you have the following installed:
 - Node.js
 - Express.js
 - MongoDB
+- React.js
 
 ## License
 
