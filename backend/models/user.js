@@ -54,7 +54,7 @@ userSchema.pre('save', async function (next) {
   }
 });
 
-// Remove sensitive fields from the user object
+// Remove sensitive fields from the user object before converting it to JSON
 userSchema.methods.toJSON = function () {
   const userObject = this.toObject();
   delete userObject.password;
