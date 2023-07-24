@@ -20,7 +20,12 @@ Before running the application, make sure you have the following installed:
 2. Install dependencies:
 
    ```
-   cd contact-manager
+   cd contact-manager/backend
+   npm install
+
+   cd.. 
+
+   cd contact-manager/frontend
    npm install
    ```
 
