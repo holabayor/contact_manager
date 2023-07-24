@@ -30,8 +30,8 @@ Before running the application, make sure you have the following installed:
 
    ```
    MONGODB_URL=your-mongodb-connection-url
-ACCESS_TOKEN="access token string"
-REFRESH_TOKEN="refresh token here"
+	ACCESS_TOKEN="access token string"
+	REFRESH_TOKEN="refresh token here"
    ```
 
 4. Run the application:
