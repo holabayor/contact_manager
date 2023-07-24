@@ -1,6 +1,6 @@
-# Simple Contact Manager Application Backend
+# Simple Contact Manager Application
 
-This is a simple contact manager application built with Node.js, Express.js, and MongoDB. It allows users to sign up, log in, and manage their contacts.
+This is a simple contact manager application built with Node.js, Express.js, MongoDB and React. It allows users to sign up, log in, and manage their contacts.
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ Before running the application, make sure you have the following installed:
 1. Clone the repository:
 
    ```
-   git clone https://github.com/your-username/contact-manager.git
+   git clone https://github.com/holabayor/contact-manager.git
    ```
 
 2. Install dependencies:
@@ -30,6 +30,8 @@ Before running the application, make sure you have the following installed:
 
    ```
    MONGODB_URL=your-mongodb-connection-url
+		ACCESS_TOKEN="access token string"
+		REFRESH_TOKEN="refresh token here"
    ```
 
 4. Run the application:
@@ -41,6 +43,8 @@ Before running the application, make sure you have the following installed:
    The server will start running on `http://localhost:5000`.
 
 ## API Endpoints
+
+- `GET /api/refresh`: Get a new access token.
 
 - `POST /api/signup`: Create a new user account. Requires `name`, `email`, and `password` in the request body.
 
