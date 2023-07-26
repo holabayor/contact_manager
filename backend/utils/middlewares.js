@@ -3,11 +3,12 @@ import jwt from 'jsonwebtoken';
 const isLoggedIn = async (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
+
   if (token == null)
     return res.status(401).send({ error: 'No token provided' });
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
-    if (err) return res.status(403).send({ error: 'Invalid token' });
+    if (err) return res.status(403).send({ error: err.message });
     const { id } = payload;
     req.userId = id;
     next();

@@ -1,3 +1,5 @@
+import Contact from '../models/contact.js';
+
 class ContactController {
   static async myContacts(req, res) {
     const allContacts = await Contact.find({ postedBy: req.user._id });
@@ -11,13 +13,15 @@ class ContactController {
 
   static async createContact(req, res) {
     const newContact = new Contact(req.body);
-    newContact.postedBy = req.user._id;
+    newContact.postedBy = req.userId;
     await newContact.save();
     res.status(201).json(newContact);
   }
 
   static async updateContact(req, res) {
-    const updatedContact = await Contact.findByIdAndUpdate(
+    const { firstName, lastName, email, phoneNumber, avatar, isFavourite } =
+      req.body;
+    const updatedContact = await Contactact.findByIdAndUpdate(
       req.params.id,
       req.body,
       {
