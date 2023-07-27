@@ -2,7 +2,7 @@ import Contact from '../models/contact.js';
 
 class ContactController {
   static async myContacts(req, res) {
-    const allContacts = await Contact.find({ postedBy: req.user._id });
+    const allContacts = await Contact.find({ postedBy: req.userId });
     res.status(200).json(allContacts);
   }
 
@@ -32,7 +32,7 @@ class ContactController {
   }
 
   static async deleteContact(req, res) {
-    await Contact.findByIdAndDelete(req.params.id);
+    await Contact.deleteOne(req.params.id);
     res.status(200).json({ message: 'Contact deleted successfully' });
   }
 }
