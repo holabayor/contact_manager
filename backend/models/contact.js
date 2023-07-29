@@ -45,6 +45,10 @@ const contactSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    postedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
   },
   { timestamps: true }
 );
