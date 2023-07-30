@@ -12,9 +12,22 @@ class ContactController {
   }
 
   static async createContact(req, res) {
-    const newContact = new Contact(req.body);
-    newContact.postedBy = req.userId;
-    await newContact.save();
+    const { firstName, lastName, email, phoneNumber, avatar, isFavourite } =
+      req.body;
+    if (!firstName || !lastName || !phoneNumber) {
+      return res.status(400).send({ error: 'Please fill all required fields' });
+    }
+    const newContact = await Contact.create({
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      avatar,
+      isFavourite,
+      postedBy: req.userId,
+    });
+
+    newContact.save();
     res.status(201).json(newContact);
   }
 
@@ -32,8 +45,16 @@ class ContactController {
   }
 
   static async deleteContact(req, res) {
-    await Contact.deleteOne(req.params.id);
-    res.status(200).json({ message: 'Contact deleted successfully' });
+    const contactId = req.params.id;
+    const contact = await Contact.deleteOne({
+      _id: contactId,
+      postedBy: req.userId,
+    });
+    if (contact.deletedCount) {
+      res.status(204).json({ message: 'Contact deleted successfully' });
+    } else {
+      return res.status(404).json({ error: 'Contact not found' });
+    }
   }
 }
 
