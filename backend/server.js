@@ -5,6 +5,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dbClient from './utils/db.js';
 import router from './routes/index.js';
+import { checkAccessTokenExpiry } from './utils/middlewares.js';
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -24,6 +25,8 @@ app.use('/api/', router);
 app.get('/', (req, res) => {
   res.json('Contact Manager');
 });
+
+app.use(checkAccessTokenExpiry);
 
 app.listen(port, () => {
   dbClient();
