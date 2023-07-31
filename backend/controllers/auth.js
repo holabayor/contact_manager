@@ -25,20 +25,21 @@ class AuthController {
   }
 
   static async login(req, res) {
+    const { email, password } = req.body;
     try {
-      if (!req.body.email || !req.body.password) {
+      if (!email || !body) {
         res
           .status(403)
           .json({ error: 'Please, enter your email and password' });
         return;
       }
-      User.findOne({ email: req.body.email }).then((user) => {
+      User.findOne({ email }).then((user) => {
         if (!user) {
-          res.status(403).json({ error: 'Invalid email' });
-          return;
+          return res.status(403).json({ error: 'Invalid credentials' });
         }
-        bcrypt.compare(req.body.password, user.password).then((isMatch) => {
+        bcrypt.compare(password, user.password).then((isMatch) => {
           if (isMatch) {
+            // Generate access token
             const accessToken = jwt.sign(
               { id: user._id },
               process.env.ACCESS_TOKEN_SECRET,
@@ -46,6 +47,7 @@ class AuthController {
                 expiresIn: 1200,
               }
             );
+            // Generate refresh token
             const refreshToken = jwt.sign(
               { id: user._id },
               process.env.REFRESH_TOKEN_SECRET,
@@ -64,7 +66,7 @@ class AuthController {
               user,
             });
           } else {
-            res.status(403).json({ error: 'Invalid password' });
+            res.status(403).json({ error: 'Invalid credentials' });
           }
         });
       });
@@ -74,19 +76,13 @@ class AuthController {
     }
   }
 
-  static async getUser(req, res) {
-    try {
-      const user = await User.findById(req.id);
-
-      if (!user) {
-        return res.status(403).json({ error: 'No user found' });
-      }
-      return res.status(200).send({
-        user,
-      });
-    } catch (error) {
-      return new Error(error);
-    }
+  static async logout(req, res) {
+    res.clearCookie('refreshToken', {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: true,
+    });
+    return res.status(200).json({ message: 'User logged out successfully' });
   }
 }
 

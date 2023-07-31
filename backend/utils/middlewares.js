@@ -16,10 +16,11 @@ const isLoggedIn = async (req, res, next) => {
 };
 
 const refreshAccessToken = (req, res, next) => {
-  const cookies = req.headers.cookie;
-  const refreshToken = cookies.split('=')[1];
+  const { refreshToken } = req.cookies;
 
-  if (refreshToken === null) return res.sendStatus(401);
+  if (refreshToken === null) {
+    return res.status(401).json({ error: 'No token provided' });
+  }
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
     if (err) return res.status(403).send({ error: 'Invalid token' });
 
