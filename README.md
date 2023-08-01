@@ -57,6 +57,8 @@ Before running the application, make sure you have the following installed:
 
 - `GET /api/contacts`: Get all contacts of the authenticated user.
 
+- `GET /api/contacts/:id`: Get a contact.
+
 - `POST /api/contacts`: Add a new contact. Requires `name`, `email`, and `phone` in the request body.
 
 - `PUT /api/contacts/:id`: Update an existing contact. Requires `name`, `email`, and `phone` in the request body.
