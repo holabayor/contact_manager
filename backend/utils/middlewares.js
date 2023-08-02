@@ -44,7 +44,7 @@ const checkAccessTokenExpiry = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const accessToken = authHeader && authHeader.split(' ')[1];
 
-  if (accessToken) {
+  try {
     jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
       if (!err && payload) {
         const currentTimestamp = Math.round(new Date().getTime() / 1000);
@@ -79,8 +79,8 @@ const checkAccessTokenExpiry = (req, res, next) => {
         }
       );
     });
-  } else {
-    return res.status(401).send({ error: 'No token provided' });
+  } catch (error) {
+    return res.status(401).send({ error: error.message });
   }
 };
 
