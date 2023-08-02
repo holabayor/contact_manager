@@ -34,7 +34,9 @@ const refreshAccessToken = (req, res, next) => {
     );
     req.id = user.id;
     res.setHeader('Authorization', `Bearer ${accessToken}`);
-    return res.status(200).json({ message: 'Token refreshed' });
+    return res
+      .status(200)
+      .json({ message: 'New access token generated successfully' });
   });
 };
 

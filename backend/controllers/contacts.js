@@ -32,16 +32,18 @@ class ContactController {
   }
 
   static async updateContact(req, res) {
-    const { firstName, lastName, email, phoneNumber, avatar, isFavourite } =
-      req.body;
-    const updatedContact = await Contactact.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
-        new: true,
-      }
-    );
-    res.status(200).json(updatedContact);
+    try {
+      const updatedContact = await Contact.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+          new: true,
+        }
+      );
+      res.status(200).json(updatedContact);
+    } catch (error) {
+      res.status(404).json({ error: 'Contact not found' });
+    }
   }
 
   static async deleteContact(req, res) {

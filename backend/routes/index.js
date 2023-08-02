@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 router.post('/signup', AuthController.signup);
 router.post('/login', AuthController.login);
 
-router.get('/refresh', isLoggedIn, refreshAccessToken, AuthController.getUser);
+router.post('/refresh', isLoggedIn, refreshAccessToken);
 
 router.get('/contacts', ContactController.myContacts);
 router.get('/contacts/:id', isLoggedIn, ContactController.getContact);

@@ -26,8 +26,9 @@ class AuthController {
 
   static async login(req, res) {
     const { email, password } = req.body;
+
     try {
-      if (!email || !body) {
+      if (!email || !password) {
         res
           .status(403)
           .json({ error: 'Please, enter your email and password' });
