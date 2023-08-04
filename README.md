@@ -49,7 +49,7 @@ Before running the application, make sure you have the following installed:
 
 ## API Endpoints
 
-- `GET /api/refresh`: Get a new access token.
+- `GET /api/refresh-token`: Get a new access token.
 
 - `POST /api/signup`: Create a new user account. Requires `name`, `email`, and `password` in the request body.
 
