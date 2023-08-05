@@ -1,8 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
 
+interface UserModel extends Document {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  phoneNumber: string;
+  profileImage?: string;
+  contacts?: string[];
+}
+
 // Define the user schema
-const userSchema = new mongoose.Schema(
+const userSchema: Schema = new Schema<UserModel>(
   {
     firstName: {
       type: String,
@@ -61,8 +71,5 @@ userSchema.methods.toJSON = function () {
   return userObject;
 };
 
-// Create the User model based on the user schema
-const User = mongoose.model('User', userSchema);
-
-// Export the User model
-export default User;
+// Create the User model based on the user schema and export it
+export const User = mongoose.model<UserModel>('User', userSchema);

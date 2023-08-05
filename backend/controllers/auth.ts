@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import User from '../models/user.js';
+import { User } from '../models/user';
 
 class AuthController {
   static async signup(req, res) {
@@ -14,7 +14,7 @@ class AuthController {
       }
 
       // Create a new user
-      const newUser = User({ firstName, lastName, email, password });
+      const newUser = new User({ firstName, lastName, email, password });
       await newUser.save();
 
       res.status(201).json({ message: 'User created successfully' });

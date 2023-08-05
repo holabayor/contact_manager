@@ -1,6 +1,23 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-const contactSchema = new mongoose.Schema(
+interface ContactModel extends Document {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  avatar: string;
+  dateOfBirth: Date;
+  socialMedia: {
+    twiter: string;
+    facebook: string;
+    instagram: string;
+    linkedin: string;
+  };
+  isFavorite: boolean;
+  postedBy: mongoose.Schema.Types.ObjectId;
+}
+
+const contactSchema: Schema = new Schema<ContactModel>(
   {
     firstName: {
       type: String,
@@ -53,6 +70,4 @@ const contactSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Contact = mongoose.model('Contact', contactSchema);
-
-export default Contact;
+export const Contact = mongoose.model<ContactModel>('Contact', contactSchema);

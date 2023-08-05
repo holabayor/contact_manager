@@ -1,7 +1,15 @@
-import { Request } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
-const isLoggedIn = async (req: Request, res, next) => {
+interface MyRequest extends Request {
+  id?: string;
+}
+
+const isLoggedIn = async (
+  req: MyRequest,
+  res: Response,
+  next: NextFunction
+) => {
   const authHeader = req.headers['authorization'];
   const accessToken = authHeader && authHeader.split(' ')[1];
 
@@ -11,12 +19,12 @@ const isLoggedIn = async (req: Request, res, next) => {
   jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
     if (err) return res.status(403).send({ error: err.message });
     const { id } = payload;
-    req.userId = id;
+    req.id = id;
     next();
   });
 };
 
-const refreshAccessToken = (req: Request, res, next) => {
+const refreshAccessToken = (req: MyRequest, res, next) => {
   const { refreshToken } = req.cookies;
 
   if (refreshToken === null) {

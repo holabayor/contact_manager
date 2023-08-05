@@ -1,8 +1,13 @@
-import Contact from '../models/contact.js';
+import { Request, Response } from 'express';
+import { Contact } from '../models/contact.js';
+
+interface MyRequest extends Request {
+  id?: string;
+}
 
 class ContactController {
-  static async myContacts(req, res) {
-    const allContacts = await Contact.find({ postedBy: req.userId });
+  static async myContacts(req: MyRequest, res: Response) {
+    const allContacts = await Contact.find({ postedBy: req.id });
     res.status(200).json(allContacts);
   }
 
@@ -31,7 +36,7 @@ class ContactController {
     res.status(201).json(newContact);
   }
 
-  static async updateContact(req, res) {
+  static async updateContact(req: MyRequest, res: Response) {
     try {
       const updatedContact = await Contact.findByIdAndUpdate(
         req.params.id,
@@ -46,11 +51,11 @@ class ContactController {
     }
   }
 
-  static async deleteContact(req, res) {
+  static async deleteContact(req: MyRequest, res: Response) {
     const contactId = req.params.id;
     const contact = await Contact.deleteOne({
       _id: contactId,
-      postedBy: req.userId,
+      postedBy: req.id,
     });
     if (contact.deletedCount) {
       res.status(204).json({ message: 'Contact deleted successfully' });
