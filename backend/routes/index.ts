@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
-import AuthController from '../controllers/auth.js';
-import ContactController from '../controllers/contacts.js';
-import { isLoggedIn, refreshAccessToken } from '../utils/middlewares.js';
+import AuthController from '../controllers/auth';
+import ContactController from '../controllers/contacts';
+import { isLoggedIn, refreshAccessToken } from '../utils/middlewares';
 
 const router = express.Router();
 

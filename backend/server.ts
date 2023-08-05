@@ -3,9 +3,9 @@ dotenv.config();
 import express, { Express } from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { dbClient } from './utils/db.js';
-import router from './routes/index.js';
-import { checkAccessTokenExpiry } from './utils/middlewares.js';
+import { dbClient } from './utils/db';
+import router from './routes/index';
+import { checkAccessTokenExpiry } from './utils/middlewares';
 
 const app: Express = express();
 const port = process.env.PORT || 8000;

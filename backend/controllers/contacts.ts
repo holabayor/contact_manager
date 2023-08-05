@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Contact } from '../models/contact.js';
+import { Contact } from '../models/contact';
 
 interface MyRequest extends Request {
   id?: string;
