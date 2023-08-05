@@ -1,22 +1,22 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import express from 'express';
+import express, { Express } from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dbClient from './utils/db.js';
 import router from './routes/index.js';
 import { checkAccessTokenExpiry } from './utils/middlewares.js';
 
-const app = express();
+const app: Express = express();
 const port = process.env.PORT || 8000;
 
-app.use(cookieParser());
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+// app.use(cookieParser());
 
 // set up cors
 app.use(cors());
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.disable('x-powered-by');
 

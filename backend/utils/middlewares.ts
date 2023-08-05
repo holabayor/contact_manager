@@ -1,6 +1,7 @@
+import { Request } from 'express';
 import jwt from 'jsonwebtoken';
 
-const isLoggedIn = async (req, res, next) => {
+const isLoggedIn = async (req: Request, res, next) => {
   const authHeader = req.headers['authorization'];
   const accessToken = authHeader && authHeader.split(' ')[1];
 
@@ -15,7 +16,7 @@ const isLoggedIn = async (req, res, next) => {
   });
 };
 
-const refreshAccessToken = (req, res, next) => {
+const refreshAccessToken = (req: Request, res, next) => {
   const { refreshToken } = req.cookies;
 
   if (refreshToken === null) {
@@ -40,7 +41,7 @@ const refreshAccessToken = (req, res, next) => {
   });
 };
 
-const checkAccessTokenExpiry = (req, res, next) => {
+const checkAccessTokenExpiry = (req: Request, res, next) => {
   const authHeader = req.headers['authorization'];
   const accessToken = authHeader && authHeader.split(' ')[1];
 
