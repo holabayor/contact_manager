@@ -22,11 +22,18 @@ class ContactController {
   }
 
   static async getContact(req, res) {
-    const contact = await Contact.findById(req.params.id);
-    res.status(200).json(contact);
+    try {
+      const contact = await Contact.findById(req.params.id);
+      if (!contact) {
+        return res.status(404).json({ error: 'Contact not found' });
+      }
+      res.status(200).json(contact);
+    } catch (error) {
+      res.status(500).json({ status: 'fail', message: error.message });
+    }
   }
 
-  static async createContact(req, res) {
+  static async createContact(req: MyRequest, res: Response) {
     try {
       const { firstName, lastName, email, phoneNumber, avatar, isFavourite } =
         req.body;
@@ -42,7 +49,7 @@ class ContactController {
         phoneNumber,
         avatar,
         isFavourite,
-        postedBy: req.userId,
+        postedBy: req.id,
       });
 
       contact.save();
