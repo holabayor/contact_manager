@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import express, { Express } from 'express';
+import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { dbClient } from './utils/db';
@@ -11,6 +12,8 @@ const app: Express = express();
 const port = process.env.PORT || 8000;
 
 // app.use(cookieParser());
+
+app.use(morgan('dev'));
 
 // set up cors
 app.use(cors());
