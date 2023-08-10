@@ -1,4 +1,5 @@
 import Table from '@/components/Table';
+import { contacts } from '@/testdata';
 import React from 'react'
 
 const data = [
@@ -21,7 +22,7 @@ const Dashboard = () => {
 
             <div className="p-6">
 
-                <Table data={data} columns={columns} />
+                <Table data={data} columns={contacts} />
             </div>
         </main>
     )
