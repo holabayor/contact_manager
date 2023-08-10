@@ -11,7 +11,7 @@ import { checkAccessTokenExpiry } from './utils/middlewares';
 const app: Express = express();
 const port = process.env.PORT || 8000;
 
-// app.use(cookieParser());
+app.use(cookieParser());
 
 app.use(morgan('dev'));
 
