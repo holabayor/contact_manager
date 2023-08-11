@@ -69,4 +69,4 @@ const contacts: User[] = [
   // Add more entries as needed
 ];
 
-export { contacts, User };
+export { contacts };

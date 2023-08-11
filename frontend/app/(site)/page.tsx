@@ -22,7 +22,7 @@ const Dashboard = () => {
 
             <div className="p-6">
 
-                <Table data={data} columns={contacts} />
+                <Table data={data} columns={columns} />
             </div>
         </main>
     )
