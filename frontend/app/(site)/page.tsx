@@ -16,15 +16,15 @@ const columns = [
 
 const Dashboard = () => {
     return (
-        <main>
+        <div className="px-2">
             <h1 className="text-2xl font-semibold mb-4">All Contacts</h1>
 
 
-            <div className="p-6">
+            <div>
 
                 <Table data={data} columns={columns} />
             </div>
-        </main>
+        </div>
     )
 }
 
