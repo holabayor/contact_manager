@@ -23,6 +23,30 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
             <form onSubmit={onSubmit}>
                 <div className="grid gap-2">
                     <div className="grid gap-2">
+                        <label className="sr-only" htmlFor="firstName">
+                            Name
+                        </label>
+                        <input
+                            id="firstName"
+                            placeholder="First Name"
+                            type="name"
+                            autoComplete="firstName"
+                            autoCorrect="off"
+                            disabled={isLoading}
+                            className="p-2 border border-input rounded-md focus:ring-primary focus:border-primary"
+                        />
+                        <label className="sr-only" htmlFor="lastName">
+                            Email
+                        </label>
+                        <input
+                            id="lastName"
+                            placeholder="Last Name"
+                            type="name"
+                            autoComplete="lastName"
+                            autoCorrect="off"
+                            disabled={isLoading}
+                            className="p-2 border border-input rounded-md focus:ring-primary focus:border-primary"
+                        />
                         <label className="sr-only" htmlFor="email">
                             Email
                         </label>
@@ -44,7 +68,7 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
                         />
                     </div>
                     <Button disabled={isLoading}>
-                        Sign In
+                        Sign Up
                     </Button>
                 </div>
             </form>
@@ -54,11 +78,11 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
                     <span className="bg-background px-2 text-muted-foreground">
-                        Don't have an account?
+                        Already have an account?
                     </span>
                 </div>
             </div>
-            <Link href={"/signup"}>Sign up here</Link>
+            <Link href={"/login"}>Sign in here</Link>
 
         </div>
     )

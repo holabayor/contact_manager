@@ -19,7 +19,7 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
     }
 
     return (
-        <div className="flex flex-col gap-6 md:w-[300px]">
+        <div className="flex flex-col gap-6 lg:w-[300px]">
             <form onSubmit={onSubmit}>
                 <div className="grid gap-2">
                     <div className="grid gap-2">
@@ -37,7 +37,7 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
                         />
                         <input
                             id="password"
-                            placeholder="Password"
+                            placeholder="password"
                             type="password"
                             disabled={isLoading}
                             className="p-2 border border-input rounded-md focus:ring-primary focus:border-primary"
