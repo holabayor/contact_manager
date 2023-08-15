@@ -19,7 +19,7 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
     }
 
     return (
-        <div className="flex flex-col gap-6 md:w-[300px]">
+        <div className="flex flex-col gap-6 md:w-[300px] border p-4">
             <form onSubmit={onSubmit}>
                 <div className="grid gap-2">
                     <div className="grid gap-2">
@@ -82,7 +82,9 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
                     </span>
                 </div>
             </div>
-            <Link href={"/login"}>Sign in here</Link>
+            <div className="flex justify-center">
+                <Link href={"/login"}>Sign in here</Link>
+            </div>
 
         </div>
     )

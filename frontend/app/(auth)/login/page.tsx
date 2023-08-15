@@ -58,8 +58,9 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
                     </span>
                 </div>
             </div>
-            <Link href={"/signup"}>Sign up here</Link>
-
+            <div className="flex justify-center">
+                <Link href={"/signup"}>Sign up here</Link>
+            </div>
         </div>
     )
 }
