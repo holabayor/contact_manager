@@ -18,7 +18,7 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
     }
 
     return (
-        <div className="grid gap-6">
+        <div className="flex flex-col gap-6 max-w-[400px] h-full">
             <form onSubmit={onSubmit}>
                 <div className="grid gap-2">
                     <div className="grid gap-2">
