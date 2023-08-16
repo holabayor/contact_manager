@@ -1,11 +1,11 @@
-interface SocialMedia {
+type SocialMedia = {
   twitter: string;
   facebook: string;
   instagram: string;
   linkedin: string;
-}
+};
 
-interface User {
+export type Contact = {
   firstName: string;
   lastName: string;
   email: string;
@@ -15,9 +15,9 @@ interface User {
   socialMedia: SocialMedia;
   isFavorite: boolean;
   postedBy: string; // Replace with actual user ID
-}
+};
 
-const contacts: User[] = [
+export const contacts: Contact[] = [
   {
     firstName: 'John',
     lastName: 'Doe',
@@ -68,5 +68,3 @@ const contacts: User[] = [
   },
   // Add more entries as needed
 ];
-
-export { contacts };
