@@ -3,6 +3,7 @@
 import React from "react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { Input } from "@/components/ui/input"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> { }
 
@@ -19,52 +20,48 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
     }
 
     return (
-        <div className="flex flex-col gap-6 md:w-[300px] border p-4">
+        <div className="flex flex-col gap-6 md:w-[300px]">
             <form onSubmit={onSubmit}>
                 <div className="grid gap-2">
                     <div className="grid gap-2">
                         <label className="sr-only" htmlFor="firstName">
                             Name
                         </label>
-                        <input
+                        <Input
                             id="firstName"
                             placeholder="First Name"
-                            type="name"
+                            type="text"
                             autoComplete="firstName"
                             autoCorrect="off"
                             disabled={isLoading}
-                            className="p-2 border border-input rounded-md focus:ring-primary focus:border-primary"
                         />
                         <label className="sr-only" htmlFor="lastName">
                             Email
                         </label>
-                        <input
+                        <Input
                             id="lastName"
                             placeholder="Last Name"
-                            type="name"
+                            type="text"
                             autoComplete="lastName"
                             autoCorrect="off"
                             disabled={isLoading}
-                            className="p-2 border border-input rounded-md focus:ring-primary focus:border-primary"
                         />
                         <label className="sr-only" htmlFor="email">
                             Email
                         </label>
-                        <input
+                        <Input
                             id="email"
                             placeholder="name@example.com"
                             type="email"
                             autoComplete="email"
                             autoCorrect="off"
                             disabled={isLoading}
-                            className="p-2 border border-input rounded-md focus:ring-primary focus:border-primary"
                         />
-                        <input
+                        <Input
                             id="password"
                             placeholder="Password"
                             type="password"
                             disabled={isLoading}
-                            className="p-2 border border-input rounded-md focus:ring-primary focus:border-primary"
                         />
                     </div>
                     <Button disabled={isLoading}>
@@ -77,7 +74,7 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
                     <span className="w-full border-t"></span>
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">
+                    <span className="px-2 text-muted-foreground">
                         Already have an account?
                     </span>
                 </div>

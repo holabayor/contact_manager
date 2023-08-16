@@ -3,6 +3,7 @@
 import React from "react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { Input } from "@/components/ui/input"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> { }
 
@@ -26,21 +27,19 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
                         <label className="sr-only" htmlFor="email">
                             Email
                         </label>
-                        <input
+                        <Input
                             id="email"
                             placeholder="name@example.com"
                             type="email"
                             autoComplete="email"
                             autoCorrect="off"
                             disabled={isLoading}
-                            className="p-2 border border-input rounded-md focus:ring-primary focus:border-primary"
                         />
-                        <input
+                        <Input
                             id="password"
                             placeholder="Password"
                             type="password"
                             disabled={isLoading}
-                            className="p-2 border border-input rounded-md focus:ring-primary focus:border-primary"
                         />
                     </div>
                     <Button disabled={isLoading}>
@@ -53,7 +52,7 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
                     <span className="w-full border-t"></span>
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">
+                    <span className="px-2 text-muted-foreground">
                         Don't have an account?
                     </span>
                 </div>
