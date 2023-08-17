@@ -2,6 +2,8 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import Image from "next/image";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -45,11 +47,12 @@ export const columns: ColumnDef<Contact>[] = [
     {
         accessorKey: 'avatar',
         header: 'Avatar',
-        cell: ({ row }) => <Image src={row.getValue('avatar')} height={40} width={40} alt="Avatar" />,
+        cell: ({ row }) => <Image src={row.getValue('avatar')} height={40} width={40} alt="Avatar" className="rounded-full" />,
     },
     {
         accessorKey: 'isFavorite',
         header: 'Favorite',
+        cell: ({ row }) => row.getValue('isFavorite') ? <AiFillHeart size={35} className="text-red-500" /> : <AiOutlineHeart size={35} />,
     },
 ];
 
@@ -59,7 +62,7 @@ export const contacts: Contact[] = [
         lastName: 'Doe',
         email: 'john.doe@example.com',
         phoneNumber: '123-456-7890',
-        avatar: 'https://example.com/avatar1.jpg',
+        avatar: 'https://randomuser.me/api/potraits/men/1.jpg',
         dateOfBirth: '1990-05-15',
         socialMedia: {
             twitter: 'john_doe_twitter',
@@ -75,7 +78,7 @@ export const contacts: Contact[] = [
         lastName: 'Smith',
         email: 'jane.smith@example.com',
         phoneNumber: '987-654-3210',
-        avatar: 'https://example.com/avatar2.jpg',
+        avatar: 'https://randomuser.me/api/potraits/men/2.jpg',
         dateOfBirth: '1985-08-20',
         socialMedia: {
             twitter: 'jane_smith_twitter',
@@ -91,7 +94,7 @@ export const contacts: Contact[] = [
         lastName: 'Johnson',
         email: 'michael.johnson@example.com',
         phoneNumber: '555-123-4567',
-        avatar: 'https://example.com/avatar3.jpg',
+        avatar: 'https://randomuser.me/api/potraits/men/3.jpg',
         dateOfBirth: '1982-03-10',
         socialMedia: {
             twitter: 'michael_johnson_twitter',

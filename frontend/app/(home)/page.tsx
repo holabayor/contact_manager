@@ -9,7 +9,7 @@ async function getData(): Promise<Contact[]> {
             lastName: 'Doe',
             email: 'john.doe@example.com',
             phoneNumber: '123-456-7890',
-            avatar: 'https://example.com/avatar1.jpg',
+            avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
             dateOfBirth: '1990-05-15',
             socialMedia: {
                 twitter: 'john_doe_twitter',
@@ -25,7 +25,7 @@ async function getData(): Promise<Contact[]> {
             lastName: 'Smith',
             email: 'jane.smith@example.com',
             phoneNumber: '987-654-3210',
-            avatar: 'https://example.com/avatar2.jpg',
+            avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
             dateOfBirth: '1985-08-20',
             socialMedia: {
                 twitter: 'jane_smith_twitter',
@@ -41,7 +41,7 @@ async function getData(): Promise<Contact[]> {
             lastName: 'Johnson',
             email: 'michael.johnson@example.com',
             phoneNumber: '555-123-4567',
-            avatar: 'https://example.com/avatar3.jpg',
+            avatar: 'https://randomuser.me/api/portraits/men/3.jpg',
             dateOfBirth: '1982-03-10',
             socialMedia: {
                 twitter: 'michael_johnson_twitter',
