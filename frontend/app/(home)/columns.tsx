@@ -3,10 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table"
 import Image from "next/image";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-
-
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
+import { RiExpandUpDownLine as ArrowUpDown } from "react-icons/ri";
 
 type SocialMedia = {
     twitter: string;
@@ -29,25 +26,46 @@ export type Contact = {
 
 export const columns: ColumnDef<Contact>[] = [
     {
+        accessorKey: 'avatar',
+        header: 'Avatar',
+        cell: ({ row }) => <Image src={row.getValue('avatar')} height={40} width={40} alt="Avatar" className="rounded-full" />,
+    },
+    {
         accessorKey: 'firstName',
-        header: 'First Name',
+        header: ({ column }) => {
+            return <button
+                className="flex items-center"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            >First Name
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+            </button>
+        }
     },
     {
         accessorKey: 'lastName',
-        header: 'Last Name',
+        header: ({ column }) => {
+            return <button
+                className="flex items-center"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            >Last Name
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+            </button>
+        }
     },
     {
         accessorKey: 'email',
-        header: 'Email',
+        header: ({ column }) => {
+            return <button
+                className="flex items-center"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            >Email
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+            </button>
+        }
     },
     {
         accessorKey: 'phoneNumber',
         header: 'Phone Number',
-    },
-    {
-        accessorKey: 'avatar',
-        header: 'Avatar',
-        cell: ({ row }) => <Image src={row.getValue('avatar')} height={40} width={40} alt="Avatar" className="rounded-full" />,
     },
     {
         accessorKey: 'isFavorite',
